@@ -1,12 +1,10 @@
-import css from './ContactForm/ContactForm.module.css'
 import { Component } from "react"
+import { nanoid } from "nanoid";
 import { ContactForm } from './ContactForm/ContactForm '
 import { ContactList } from "./ContactList/ContactList"
 import { Filter } from "./Filter/Filter";
-import { nanoid } from "nanoid";
-
-const LOCALSTORAGE_KEY = 'contacts-key'
-
+import { LOCALSTORAGE_KEY } from "../constants/constants";
+import css from './ContactForm/ContactForm.module.css'
 
 export class App extends Component {
   state = {
@@ -15,8 +13,7 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    const contacts = localStorage.getItem(LOCALSTORAGE_KEY);
-    const parsedContacts = JSON.parse(contacts)
+    const parsedContacts = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
     if (parsedContacts) {
       this.setState({
       contacts: parsedContacts
